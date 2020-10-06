@@ -1,11 +1,11 @@
 {
   "configProperties": {
-    "userPrincipalNameSuffix": "@clickdevtest.onmicrosoft.com",
-    "sqldb_connection": "Data Source=clicksqlsrv.database.windows.net; Initial Catalog=clickdb;",
+    "userPrincipalNameSuffix": "",
+    "sqldb_connection": "Data Source=; Initial Catalog=;",
     "rowsPerCycle": 100,
     "sendMailNotification": false,
-    "mailNotificationTo": "nadav@pro-vision.co.il",
-    "mailNotificationFrom": "nadav@pro-vision.co.il",
+    "mailNotificationTo": "",
+    "mailNotificationFrom": "",
     "debug": true,
     "disableUsers": true
   }
