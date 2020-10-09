@@ -10,7 +10,7 @@
             "request": "launch",
             "preLaunchTask": "build",
             "program": "${workspaceFolder}/bin/Debug/netcoreapp3.1/ClickSync.dll",
-            "args": [],
+            "args": [""],
             "cwd": "${workspaceFolder}",
             "console": "internalConsole",
             "stopAtEntry": false

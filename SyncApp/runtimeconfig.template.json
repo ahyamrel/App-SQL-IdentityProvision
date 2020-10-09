@@ -1,0 +1,27 @@
+{
+  "configProperties": {
+    "userPrincipalNameSuffix": "@idf.il",
+    "sqldb_connection": "Data Source=digital-sql.database.windows.net; Initial Catalog=click-integration;",
+    "rowsPerCycle": 500,
+    "sendMailNotification": yes,
+    "mailNotificationTo": "marielborodkin@idf.il",
+    "mailNotificationFrom": "danreuven@idf.il",
+    "debug": true,
+    "disableUsers": true,
+    "maxRetirements": 500,
+    "maxChanges": 500,
+    "licenseGroups": "c0cf3de1-d998-4e36-aa90-8e52bd781157",
+"f9c83bd2-7ef0-4f43-8615-43fa11ba8bfb",
+"9c07bf5b-f3eb-4f61-bced-033ce129bae3",
+"a1568dee-683d-473d-93c6-ada61323eff2",
+"648b6d87-01af-4b53-8925-96c223929536",
+"9afaf8da-792b-429d-bd4a-df7d9d4d8d3d",
+"5ff9baab-8def-4003-9bea-a64e4509f49b",
+"c208ef6f-41da-4806-a3d3-e40a43afe532",
+"06665a9e-a4b7-4e73-af62-1114f033f4b0",
+"ba6a003f-e515-40ef-8e1b-937e0c8abf8a",
+"cea42afd-5bf4-4c7d-a420-088bd2144779",
+"769b1aa1-f4e8-4ff9-8832-a1c40ab73176",
+"7b3b20f5-43d5-45ed-9da7-c3ee6fa4684b"
+  }
+}

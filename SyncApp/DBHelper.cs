@@ -35,12 +35,69 @@ namespace ClickSync
             _conn.Close();
         }
 
+        public async Task<int> GetNumberOfRetirementsFromDB(){
+            try
+            {
+                var sqlCommand = $"SELECT COUNT(*) FROM [dbo].[Pratim_pp] WHERE ClickObjectID IS NOT NULL AND ClickSynced=0 AND RetirementDate <= GETDATE()";
+                SqlCommand cmd = new SqlCommand(sqlCommand, _conn);
+                return (int)cmd.ExecuteScalar();
+            }
+            catch (System.Exception ex)
+            {
+                string message = $"Error getting number of retirements from SQL!\n error: {ex.Message}";
+                Program.WriteLog("e",message);
+                await GraphHelper.SendMail(message, "There was an error in Click synchronization process");
+                Environment.Exit(-1);
+                return 0;
+            } 
+        }
+
+        public async Task<int> GetNumberOfChangesFromDB(){
+            try
+            {
+                var sqlCommand = $"SELECT COUNT(*) FROM pratim_pp WHERE ClickObjectID IS NOT NULL AND ClickSynced=0 AND (NOT RetirementDate <= GETDATE() OR RetirementDate IS NULL)";
+                SqlCommand cmd = new SqlCommand(sqlCommand, _conn);
+                return (int)cmd.ExecuteScalar();
+             }
+            catch (System.Exception ex)
+            {
+                string message = $"Error getting number of changes from SQL!\n error: {ex.Message}";
+                Program.WriteLog("e",message);
+                await GraphHelper.SendMail(message, "There was an error in Click synchronization process");
+                Environment.Exit(-1);
+                return 0;
+            } 
+        }
+
+        public async Task<List<ClickUser>> GetRetirementsFromDB(int numberOfUsersToGet){
+            try
+            {
+                var sqlCommand = $"SELECT TOP {numberOfUsersToGet} * FROM [dbo].[Pratim_pp] WHERE ClickObjectID IS NOT NULL AND ClickSynced=0 AND RetirementDate <= GETDATE()";
+                List<ClickUser> clickUsers = new List<ClickUser>();
+                SqlCommand cmd = new SqlCommand(sqlCommand, _conn);
+                SqlDataReader reader = cmd.ExecuteReader();
+                while (reader.Read())
+                    clickUsers.Add(new ClickUser(reader));
+                reader.Close();
+                await reader.DisposeAsync();
+                return clickUsers;
+            }
+            catch (Exception ex)
+            {
+                string message = $"Error getting retirement users from SQL!\n error: {ex.Message}";
+                Program.WriteLog("e",message);
+                await GraphHelper.SendMail(message, "There was an error in Click synchronization process");
+                Environment.Exit(-1);
+                return new List<ClickUser>();
+            }
+        }
+
         public async Task<List<ClickUser>> GetUsersFromDB(int numberOfUsersToGet)
         {
             try
             {
                 List<ClickUser> clickUsers = new List<ClickUser>();
-                var sqlCommand = $"SELECT TOP {numberOfUsersToGet} * FROM pratim_pp WHERE ClickSynced=0";
+                var sqlCommand = $"SELECT TOP {numberOfUsersToGet} * FROM pratim_pp WHERE ClickObjectID IS NOT NULL AND ClickSynced=0 AND (NOT RetirementDate <= GETDATE() OR RetirementDate IS NULL)";
                 SqlCommand cmd = new SqlCommand(sqlCommand, _conn);
                 SqlDataReader reader = cmd.ExecuteReader();
                 while (reader.Read())
@@ -58,9 +115,9 @@ namespace ClickSync
             }
         }
 
-        public async Task UpdateClickObjectID(string ClickObjectID, string TZ)
+        public async Task UpdateClickSynced(string TZ)
         {
-            var sqlCommand = $"UPDATE Pratim_pp SET ClickObjectID='{ClickObjectID}', ClickSynced=1 WHERE TZ='{TZ}'";
+            var sqlCommand = $"UPDATE Pratim_pp SET ClickSynced=1 WHERE TZ='{TZ}'";
 
             try
             {
@@ -89,10 +146,8 @@ namespace ClickSync
             }
             catch (System.Exception ex)
             {
-
                 Program.WriteLog("e",$"Error writing to SQL {sqlCommand} error: {ex.Message}");
             }
         }
-
     }
 }

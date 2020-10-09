@@ -8,12 +8,15 @@
     "configProperties": {
       "userPrincipalNameSuffix": "@clickdevtest.onmicrosoft.com",
       "sqldb_connection": "Data Source=clicksqlsrv.database.windows.net; Initial Catalog=clickdb;",
-      "rowsPerCycle": 100,
+      "rowsPerCycle": 500,
       "sendMailNotification": false,
       "mailNotificationTo": "nadav@pro-vision.co.il",
       "mailNotificationFrom": "nadav@pro-vision.co.il",
       "debug": true,
-      "disableUsers": true
+      "disableUsers": true,
+      "maxRetirements": 500,
+      "maxChanges": 500,
+      "licenseGroups": "1d778e10-28ac-46ce-aae8-5e2f0f785695,28f28269-6fd3-45e9-9c39-2aaa7e2495ed"
     }
   }
 }

@@ -35,3 +35,7 @@ C:\Click\ClickSync\bin\Debug\netcoreapp3.1\Microsoft.Extensions.Primitives.dll
 C:\Click\ClickSync\bin\Debug\netcoreapp3.1\Microsoft.Extensions.Logging.Configuration.dll
 C:\Click\ClickSync\bin\Debug\netcoreapp3.1\Microsoft.Extensions.Logging.Console.dll
 C:\Click\ClickSync\bin\Debug\netcoreapp3.1\Microsoft.Extensions.Options.ConfigurationExtensions.dll
+C:\Click\ClickSync\bin\Debug\netcoreapp3.1\Microsoft.IdentityModel.JsonWebTokens.dll
+C:\Click\ClickSync\bin\Debug\netcoreapp3.1\Microsoft.IdentityModel.Logging.dll
+C:\Click\ClickSync\bin\Debug\netcoreapp3.1\Microsoft.IdentityModel.Tokens.dll
+C:\Click\ClickSync\bin\Debug\netcoreapp3.1\System.IdentityModel.Tokens.Jwt.dll
